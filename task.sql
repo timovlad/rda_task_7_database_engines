@@ -8,8 +8,13 @@ CREATE TABLE Countries (
     PRIMARY KEY (ID)
 ) ENGINE=InnoDB;
 
--- Используем базу данных
-USE ShopDB;
+CREATE TABLE ProductInventory (
+    ID INT PRIMARY KEY AUTO_INCREMENT,
+    ProductName VARCHAR(50),
+    WarehouseAmount INT,
+    WarehouseID INT,
+    FOREIGN KEY (WarehouseID) REFERENCES Warehouses(ID)
+) ENGINE = InnoDB;
 
 CREATE TABLE GeoIPCache (
     ID INT PRIMARY KEY AUTO_INCREMENT,
@@ -31,7 +36,7 @@ CREATE TABLE Logs (
     ID INT PRIMARY KEY AUTO_INCREMENT,
     Timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     Message TEXT
-) ENGINE = MEMORY;
+) ENGINE = BLACKHOLE;
 
 CREATE TABLE ProductReporting (
     Date DATE,
